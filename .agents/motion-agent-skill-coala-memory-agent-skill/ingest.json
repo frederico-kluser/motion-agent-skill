@@ -1,0 +1,42 @@
+{
+  "_doc": "Memória interna do repo motion-agent-skill para `coala.py ingest`. LEARNINGS.md de cada sub-skill (motion-plus-*) entram como memória episódica; SKILL.md/references como conhecimento semântico.",
+  "version": 1,
+  "key_prefix": "motion",
+  "path_prefix": "",
+  "exclude": [],
+  "rules": [
+    {
+      "name": "learnings",
+      "include": ["*/LEARNINGS.md"],
+      "mode": "markdown",
+      "type": "episodic",
+      "origin": "agent",
+      "tags": "learnings,evolucao,historico,{dir}"
+    },
+    {
+      "name": "skills",
+      "include": ["*/SKILL.md"],
+      "mode": "markdown",
+      "type": "semantic",
+      "origin": "agent",
+      "tags": "skill,{dir}"
+    },
+    {
+      "name": "referencias",
+      "include": ["*/references/**/*.md"],
+      "mode": "markdown",
+      "type": "semantic",
+      "origin": "agent",
+      "tags": "referencia,{dir},{stem}"
+    },
+    {
+      "name": "readme",
+      "include": ["README.md"],
+      "mode": "markdown",
+      "type": "semantic",
+      "origin": "agent",
+      "tags": "docs,readme"
+    }
+  ],
+  "graph": { "entities": [], "edges": [] }
+}

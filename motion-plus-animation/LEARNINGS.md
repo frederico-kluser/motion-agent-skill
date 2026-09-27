@@ -1,3 +1,5 @@
+> **MEMÓRIA APOSENTADA (2026-09-27):** o conteúdo deste ficheiro foi migrado para a memória CoALA local do repositório (`.agents/motion-agent-skill-coala-memory-agent-skill/`). Fica só como **fonte histórica** — não escrever mais aqui. Aprendizado novo: `python3 .agents/motion-agent-skill-coala-memory-agent-skill/scripts/coala.py add --type episodic --content "…"`.
+
 # LEARNINGS — motion-plus-animation
 
 > Buffer de probação. Formato:
