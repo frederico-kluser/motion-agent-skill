@@ -49,3 +49,16 @@
   as variants das letras não recebem o label propagado por um `motion.span` pai — as letras ficam
   com `transform: none`. Além disso `AnimateTextProps` não declara `transition`/`initial`/`animate`
   embora o `...props` os repasse, então TypeScript reclama. Use `splitText`.
+
+- [2026-09-29] [source: vibe-coding-game] [task: animar cena SVG com zero dependências] Projetos
+  vanilla/zero-dependências (aqui: demo sem build + bundle DSH que não pode importar pacotes) não
+  conseguem usar o runtime `motion` sem quebrar o contrato do projeto — e não precisam: o caminho
+  "CSS puro sem runtime" da skill cobre tudo. Ganho real de performance em cenas SVG animadas vem
+  de (1) animar só o que está visível (mesma matemática de câmara que o `inView`, mas num world
+  transformado), (2) pausar tudo com a aba escondida (`animation-play-state` + gate WAAPI), e
+  (3) `will-change` gerido (só durante o gesto). Armadilha específica de SVG em cena: animação
+  CONTÍNUA de SVG não compõe na GPU e repinta a camada a cada frame — um loop de "degraus"
+  (keyframes amostrados + `steps(1,end)` + animações em pausa avançadas por um único temporizador,
+  5 Hz) medido 31%→2,5% de CPU é MELHOR que springs/WAAPI a 60 fps; MotionScore mantém-se S (só
+  transform/opacity). WAAPI (`element.animate`) não herda o `prefers-reduced-motion` do CSS — gate
+  manual obrigatório.
